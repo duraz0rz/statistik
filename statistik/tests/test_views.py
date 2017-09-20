@@ -1,6 +1,6 @@
 # coding=UTF-8
 from django.test import TestCase
-import statistik.views
+import statistik.views as subject
 
 class ViewsTest(TestCase):
     def test__generate_chart_difficulty_display_adds_the_star_if_has_reviewed_is_in_dict(self):
@@ -14,7 +14,7 @@ class ViewsTest(TestCase):
                 "has_reviewed": False
             }
         ]
-        modified_chart_data = statistik.views._generate_chart_difficulty_display(chart_data)
+        modified_chart_data = subject._generate_chart_difficulty_display(chart_data)
 
         self.assertEqual(modified_chart_data[0]['difficulty'], '12★')
         self.assertEqual(modified_chart_data[1]['difficulty'], '511☆')
@@ -25,7 +25,7 @@ class ViewsTest(TestCase):
                 "difficulty": 14
             }
         ]
-        modified_chart_data = statistik.views._generate_chart_difficulty_display(chart_data)
+        modified_chart_data = subject._generate_chart_difficulty_display(chart_data)
 
         self.assertEqual(modified_chart_data[0]['difficulty'], '14☆')
 
@@ -35,7 +35,7 @@ class ViewsTest(TestCase):
                 "bpm_min": 150
             }
         ]
-        modified_chart_data = statistik.views._generate_chart_bpm_display(chart_data)
+        modified_chart_data = subject._generate_chart_bpm_display(chart_data)
 
         self.assertEqual(modified_chart_data[0]['bpm'], '150') 
 
@@ -46,7 +46,7 @@ class ViewsTest(TestCase):
                 "bpm_max": 320
             }
         ]
-        modified_chart_data = statistik.views._generate_chart_bpm_display(chart_data)
+        modified_chart_data = subject._generate_chart_bpm_display(chart_data)
 
         self.assertEqual(modified_chart_data[0]['bpm'], '160 - 320')
 
@@ -57,12 +57,12 @@ class ViewsTest(TestCase):
                 "bpm_max": 573
             }
         ]
-        modified_chart_data = statistik.views._generate_chart_bpm_display(chart_data)
+        modified_chart_data = subject._generate_chart_bpm_display(chart_data)
 
         self.assertEqual(modified_chart_data[0]['bpm'], '573')
 
     def test__generate_chart_bpm_display_sets_bpm_to_default_if_neither_bpm_value_exists(self):
         chart_data = [{}]
-        modified_chart_data = statistik.views._generate_chart_bpm_display(chart_data)
+        modified_chart_data = subject._generate_chart_bpm_display(chart_data)
 
         self.assertEqual(modified_chart_data[0]['bpm'], '--')
