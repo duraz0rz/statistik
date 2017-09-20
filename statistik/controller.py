@@ -410,7 +410,7 @@ def get_reviews_for_chart(chart_id):
     """
     chart_reviews = Review.objects.filter(chart=chart_id).prefetch_related(
         'user__userprofile')
-
+        
     game = Chart.objects.get(id=chart_id).song.game
 
     # collect info to display for each review
@@ -428,10 +428,11 @@ def get_reviews_for_chart(chart_id):
             'score_rating': str(review.score_rating or ""),
 
             'characteristics': [
-                (_(TECHNIQUE_CHOICES[game][x % 100][1]), '#187638')
+                (_(TECHNIQUE_CHOICES[game][x % 100][1]), 'insane-techique')
                 if x in review.user.userprofile.best_techniques
-                else (_(TECHNIQUE_CHOICES[game][x % 100][1]), '#000')
-                for x in review.characteristics],
+                else (_(TECHNIQUE_CHOICES[game][x % 100][1]), 'watch-out')
+                for x in review.characteristics
+            ],
 
             'recommended_options': ', '.join([
                  _(RECOMMENDED_OPTIONS_CHOICES[game][x][1])

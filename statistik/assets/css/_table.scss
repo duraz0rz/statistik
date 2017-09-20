@@ -62,8 +62,22 @@ table {
             &.username {
                 width: 10em;
             }
-            &.reviewtext {
+            &.review-text {
                 width: 20em;
+                margin-bottom: 1em;
+            }
+            .review-characteristics {
+                margin-top: 1em;
+
+                span {
+                    font-weight: bold;
+                    &.insane-technique {
+                        color: #187638;
+                    }
+                    &.watch-out {
+                        color: black;
+                    }
+                }
             }
             &.options {
                 width: 14em;
