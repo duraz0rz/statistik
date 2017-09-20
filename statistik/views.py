@@ -406,3 +406,6 @@ def _generate_chart_bpm_display(chart_data):
             chart['bpm'] = '--'
     
     return chart_data
+
+def _create_characteristic_display(reviews):
+    return reviews

@@ -416,6 +416,12 @@ def get_reviews_for_chart(chart_id):
     # collect info to display for each review
     review_data = []
     for review in chart_reviews:
+        characteristics = []
+        for characteristic in review.characteristics:
+            characteristics.append({
+                'technique': _(TECHNIQUE_CHOICES[game][characteristic % 100][1]),
+                'is_insane': characteristic in review.user.userprofile.best_techniques 
+            })
         review_data.append({
             'user': review.user.get_username(),
             'user_id': review.user.id,
@@ -427,12 +433,7 @@ def get_reviews_for_chart(chart_id):
             'exhc_rating': str(review.exhc_rating or ""),
             'score_rating': str(review.score_rating or ""),
 
-            'characteristics': [
-                (_(TECHNIQUE_CHOICES[game][x % 100][1]), 'insane-techique')
-                if x in review.user.userprofile.best_techniques
-                else (_(TECHNIQUE_CHOICES[game][x % 100][1]), 'watch-out')
-                for x in review.characteristics
-            ],
+            'characteristics': characteristics,
 
             'recommended_options': ', '.join([
                  _(RECOMMENDED_OPTIONS_CHOICES[game][x][1])

@@ -66,3 +66,28 @@ class ViewsTest(TestCase):
         modified_chart_data = subject._generate_chart_bpm_display(chart_data)
 
         self.assertEqual(modified_chart_data[0]['bpm'], '--')
+
+    def test__create_characteristic_display_returns_if_characteristics_is_empty_list(self):
+        reviews = [
+            {
+                'characteristics': []
+            }
+        ]
+
+        actual_reviews = subject._create_characteristic_display(reviews)
+
+        self.assertEqual(len(actual_reviews), 1)
+        self.assertFalse(actual_reviews[0]['characteristics'])
+
+    defl test__create_characteristic_display_sets_css_class_correctly_if_insane_technique(self):
+        reviews = [
+            {
+                'characteristics': [
+                    {
+                        'characteristic': 'Scratching'
+                        'is_insane': True
+                    
+                    }
+                ]    
+            }
+        ]
