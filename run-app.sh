@@ -1,14 +1,14 @@
-#!/bin/bash -e
+#!/usr/bin/env bash -e
 
-echo Waiting for DB to be available... 
+echo Waiting for DB to be available...
 while ! nc -z db 5432 2>/dev/null
 do
     let elapsed=elapsed+1
-    if [ "$elapsed" -gt 90 ] 
+    if [ "$elapsed" -gt 90 ]
     then
         echo "TIMED OUT !"
         exit 1
-    fi  
+    fi
     sleep 1;
 done
 
