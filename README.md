@@ -8,6 +8,9 @@ Deployed to my DO droplet at http://statistik.benhgreen.com.
 Elo reviews can be found at http://statistik.benhgreen.com/elo?level=12.
 
 ## Setup
+
+You can use Docker for the quick and easy setup.
+
 Uses Python 3.5, Django 1.8, Postgres, as well as whatever else is in `requirements.txt`.
 (Postgres is absolutely required unless you modify certain models to not use ArrayFields.)
 
@@ -21,8 +24,15 @@ To populate the song database, run the included `import_music_csv.py` and
 
 ## Running the app locally with Docker
 
-* Build the requirements image: `docker build -f docker/Dockerfile.requirements --tag statistik-requirements .`
-* Build the app: `docker-compose build`
+* If you're on Windows and on Docker Edge:
+  * Install LCOW:  https://github.com/linuxkit/lcow
+  * Switch Docker to use Linux containers
+  * Add a .env file with the following setting: `COMPOSE_CONVERT_WINDOWS_PATHS=1`
+  * Remove all existing containers: `docker rm $(docker ps -aq)`
+  * Restart Docker
+
+* Build the image for the app to run in: `docker-compose build`
+  * You only need to do this if you modify any dependencies in `Pipfile`.
 * Run the app: `docker-compose up`
 
 ## Primary TODOs

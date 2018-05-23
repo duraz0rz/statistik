@@ -1,0 +1,32 @@
+[[source]]
+verify_ssl = true
+name = "pypi"
+url = "https://pypi.org/simple"
+
+[requires]
+python_version = "3.5"
+
+[packages]
+coverage = "*"
+dj-database-url = "*"
+dj-static = "*"
+"django-bootstrap3" = "*"
+django-debug-toolbar = "*"
+django-toolbelt = "*"
+elo = "*"
+gunicorn = "*"
+numpy = "*"
+"psycopg2-binary" = "*"
+sendgrid = "*"
+sendgrid-django = "*"
+smtpapi = "*"
+sqlparse = "*"
+"static3" = "*"
+libsass = "*"
+django-sass-processor = "*"
+django-jquery = "*"
+Django = "==1.8.6"
+django_compressor = "*"
+
+[dev-packages]
+pylint = "*"
