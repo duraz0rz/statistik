@@ -1,4 +1,4 @@
-#!/usr/bin/env bash -e
+#!/bin/bash -e
 
 echo Waiting for DB to be available...
 while ! nc -z db 5432 2>/dev/null
